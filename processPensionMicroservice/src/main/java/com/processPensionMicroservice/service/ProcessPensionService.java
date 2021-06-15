@@ -1,5 +1,8 @@
 package com.processPensionMicroservice.service;
 
+import java.text.DecimalFormat;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.processPensionMicroservice.model.PensionDetail;
@@ -9,7 +12,14 @@ import com.processPensionMicroservice.model.ProcessPensionResponse;
 
 @Service
 public class ProcessPensionService {
-
+	
+	
+	@Value("${self.pension}")
+	private float selfPension;
+	@Value("${family.pension}")
+	private float familyPension;
+	
+	
 	/**
 	 * Calculates the pension based on the SELF and FAMILY
 	 * 
@@ -19,10 +29,14 @@ public class ProcessPensionService {
 	public PensionDetail getresult(PensionerDetail pd) {
 		double d = 0;
 		PensionDetail p;
-		if (pd.getPensionType().equalsIgnoreCase("self"))
-			d = (pd.getSalary() * 0.8 + pd.getAllowance());
-		else if (pd.getPensionType().equalsIgnoreCase("family"))
-			d = (pd.getSalary() * 0.5 + pd.getAllowance());
+		if (pd.getPensionType().equalsIgnoreCase("self")) {
+			d = (pd.getSalary() * selfPension + pd.getAllowance());
+			d= Math.round(d*100.0)/100.0;
+		}
+		else if (pd.getPensionType().equalsIgnoreCase("family")) {
+			d = (pd.getSalary() * familyPension + pd.getAllowance());
+			d= Math.round(d*100.0)/100.0;
+		}
 		p = new PensionDetail(pd.getName(), pd.getDateOfBirth(), pd.getPan(), pd.getPensionType(), d);
 		return p;
 
