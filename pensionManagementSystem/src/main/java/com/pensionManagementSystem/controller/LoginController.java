@@ -18,11 +18,13 @@ import com.pensionManagementSystem.model.JWTResponse;
 import com.pensionManagementSystem.model.User;
 
 import jdk.internal.org.jline.utils.Log;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Karthik
  *
  */
+@Slf4j
 @Controller
 public class LoginController {
 
@@ -55,7 +57,7 @@ public class LoginController {
 			HashMap<String, String> tokenBodyMap = (LinkedHashMap<String, String>) token.getBody();
 			JWTResponse response = new JWTResponse(tokenBodyMap.get("token"));
 			model.addAttribute("status", "Login Success!!");
-			Log.info("setting token to session");
+			log.info("setting token to session");
 			session.setAttribute("token", response.getToken());
 
 		} catch (Exception e) {
@@ -82,7 +84,7 @@ public class LoginController {
 		} else {
 			model.addAttribute("status", "Wrong User!!");
 		}
-		Log.info("invalidating session");
+		log.info("invalidating session");
 		session.invalidate();
 		return "Testlogin";
 	}
