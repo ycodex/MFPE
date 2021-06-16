@@ -13,11 +13,15 @@ import com.pensionerDisbursementMicroservice.Model.ProcessPensionResponse;
 import com.pensionerDisbursementMicroservice.client.PensionDetailsClient;
 import com.pensionerDisbursementMicroservice.service.PensionDisbursmentService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class PensionDisbursementController {
 
 	@Autowired
 	private PensionDetailsClient pdp;
+	
 
 	@Autowired
 	private PensionDisbursmentService pds;
@@ -25,10 +29,14 @@ public class PensionDisbursementController {
 	@PostMapping("/disbursePension")
 	public ProcessPensionResponse getcode(@RequestBody ProcessPensionInput processPensionInput)
 			throws IOException, NotFoundException {
+		log.info("");
+		log.info("Requesting the bank details ");
 		ProcessPensionResponse p = pds.code(
 				pdp.getPensionerDetailByAadhaar(processPensionInput.getAadharNumber()).getBank(),
 				processPensionInput.getServiceCharge());
+		log.info("Getting the service charge...");
 		return p;
+		
 	}
 
 }
