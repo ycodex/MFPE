@@ -55,7 +55,9 @@ public class processPensionController {
 
 		// checks the input and database details
 		ProcessPensionResponse ppr = processPensionService.checkdetails(pensionerInput, pensionerDetail);
-
+		if(ppr.getPensionStatusCode()==21) {
+			return pensionDetail;
+		}
 		if (ppr.getPensionStatusCode() == 10) {
 			// Calculates the pension
 			pensionDetail = processPensionService.getresult(pensionerDetail);
@@ -77,6 +79,7 @@ public class processPensionController {
 				return null;
 			}
 		}
+		
 		// Pension Details
 		log.info(pensionDetail.toString());
 		return pensionDetail;

@@ -54,6 +54,7 @@ public class PensionerdetailService {
 		}catch(Exception e) {
 			//
 		}
+		log.info("Map of details");
 		log.info(pensionDetails.toString());
 		if (pensionDetails.containsKey(aadhaarNumber)) {
 			return pensionDetails.get(aadhaarNumber);
@@ -100,6 +101,7 @@ public class PensionerdetailService {
 		// call the parse method of CsvToBean
 		// pass strategy, csvReader to parse method
 		List<PensionerDetailCsv> list = csvToBean.parse(strategy, csvReader);
+		log.info("List of details");
 		log.info(list.toString());
 		// print details of Bean object
 		for (PensionerDetailCsv e : list) {

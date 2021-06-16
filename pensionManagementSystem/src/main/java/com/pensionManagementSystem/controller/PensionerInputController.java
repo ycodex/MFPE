@@ -22,6 +22,8 @@ import com.pensionManagementSystem.model.PensionDetail;
 import com.pensionManagementSystem.model.PensionerInput;
 import com.pensionManagementSystem.repo.PensionDetailsRepo;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 public class PensionerInputController {
 	@Autowired
@@ -34,29 +36,46 @@ public class PensionerInputController {
 	PensionDetailsRepo repo;
 	boolean invalidInput = false;
 	
+	/**
+	 * Process the input
+	 * @param pensionerInput
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/processPensionerInput")
 	public String showPensionerInputForm(@ModelAttribute PensionerInput pensionerInput, HttpSession session,
 			ModelMap model) {
+		
 		boolean validated = authorizationMicroserviceClient.validateToken((String) session.getAttribute("token"));
 		if (validated) {
 			if (invalidInput) {
 				model.addAttribute("status", "Wrong Pension Data!!");
 				invalidInput = false;
 			}
+			log.info("returning the input page");
 			return "TestpensionerInput";
 		}
 		return "redirect:/login";
 	}
 
 	
+	/**
+	 * calculate pension
+	 * @param pensionerInput
+	 * @param result
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/getPensionerDetail")
 	public String fetchDetails(@ModelAttribute PensionerInput pensionerInput, BindingResult result, HttpSession session,
 			ModelMap model) {
 
-		System.out.println(pensionerInput);
+		log.info(pensionerInput.toString());
 
 		PensionDetail pensionDetail = processPensionMicroserviceClient.getPensionDetails(pensionerInput);
-		System.out.println("Details: " + pensionDetail);
+		log.info("Details: " + pensionDetail);
 
 		if (pensionDetail == null) {
 			invalidInput = true;
@@ -67,10 +86,17 @@ public class PensionerInputController {
 		return "TestpensionDisbursement";
 	}
 
+	/**
+	 * disbursement of pension
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("/disbursement")
 	public String successfulDisbursement(ModelMap model, HttpSession session) {
 		boolean validated = authorizationMicroserviceClient.validateToken((String) session.getAttribute("token"));
 		if (validated) {
+			log.info("saving into database");
 			repo.save(pD);
 			model.addAttribute("msg", "Congratulations!!");
 			model.addAttribute("info", "Amount has been disbursed to your bank account.");
@@ -80,6 +106,7 @@ public class PensionerInputController {
 		return "TestpensionDisbursement";
 	}
 
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

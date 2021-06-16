@@ -33,6 +33,12 @@ public class JWTController {
 
 	private UserDetails userDetails;
 
+	/**
+	 * Authenticate the user
+	 * @param authenticationRequest
+	 * @return
+	 * @throws UsernameNotFoundException
+	 */
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> generateToken(@RequestBody User authenticationRequest) throws UsernameNotFoundException {
 
@@ -56,6 +62,11 @@ public class JWTController {
 		return ResponseEntity.ok(new JWTResponse(token));
 	}
 
+	/**
+	 * Validate user
+	 * @param token
+	 * @return
+	 */
 	@PostMapping("/validate")
 	public Boolean validateToken(@RequestBody String token) {
 		return jwtUtil.validateToken(token, userDetails);
