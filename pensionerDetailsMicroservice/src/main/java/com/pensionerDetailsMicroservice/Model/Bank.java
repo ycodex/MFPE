@@ -1,19 +1,24 @@
 package com.pensionerDetailsMicroservice.Model;
 
+import com.opencsv.bean.CsvBindByName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class Bank {
-	private String bankName;
-	private long accountNumber;
-	private String bankType;
 
+public class Bank {
+	@CsvBindByName(column = "BANK_NAME")
+	private String bankName;
+	
+	@CsvBindByName(column = "ACC_NO")
+	private long accountNumber;
+	
+	@CsvBindByName(column = "BANK_TYPE")
+	private String bankType;
+	
 	
 }
-

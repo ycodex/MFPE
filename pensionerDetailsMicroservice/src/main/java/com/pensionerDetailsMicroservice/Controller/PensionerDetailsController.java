@@ -12,28 +12,30 @@ import com.pensionerDetailsMicroservice.Exception.NotFoundException;
 import com.pensionerDetailsMicroservice.Model.PensionerDetail;
 import com.pensionerDetailsMicroservice.Service.PensionerdetailService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class PensionerDetailsController {
 
 	@Autowired
 	private PensionerdetailService pds;
 
 	/**
-	 * gets pension detail by aadhar
+	 * gets pensioner detail by aadhaar
 	 * 
 	 * @param aadhaarNumber
 	 * @return
 	 */
 	@PostMapping("/pensionerDetailByAadhaar/{aadhaarNumber}")
 	public PensionerDetail getPensionerDetailByAadhaar(@PathVariable long aadhaarNumber) {
-
+		log.info("/pensionerDetailByAadhaar/{aadhaarNumber} is being hit/accessed");
 		try {
 			return pds.getPensionerDetailByAadhaarNumber(aadhaarNumber);
 		} catch (NumberFormatException | IOException | NotFoundException | ParseException e) {
+			log.error("Pensioner Details not found");
 			return null;
 		}
 
 	}
-	
-	
 }
