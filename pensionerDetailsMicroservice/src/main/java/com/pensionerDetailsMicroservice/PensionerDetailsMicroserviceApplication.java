@@ -12,7 +12,6 @@ import com.pensionerDetailsMicroservice.Exception.NotFoundException;
 
 @SpringBootApplication
 @EnableFeignClients
-@EnableDiscoveryClient
 public class PensionerDetailsMicroserviceApplication {
 
 	public static void main(String[] args)

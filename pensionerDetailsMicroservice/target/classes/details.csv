@@ -1,3 +1,4 @@
+aadhar,name,dateOfBirth,pan,salary,allowance,pensionType,bankName,accountNumber,bankType
 123456789012,Shubham,29-01-1999,PCASD1234Q,27000,10000,self,ICICI,12345678,private
 123456789013,Vaibhav,27-11-1998,PCQAZ1285Q,30000,12000,family,SBI,12345679,public
 123456789014,Neha,24-10-1998,PCERF1212E,30001,12001,self,HDFC,12345680,private
