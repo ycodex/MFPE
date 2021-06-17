@@ -14,6 +14,12 @@ import com.pensionerDetailsMicroservice.Service.PensionerdetailService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 
+ * @author rohithKuppa
+ *
+ */
+
 @RestController
 @Slf4j
 public class PensionerDetailsController {

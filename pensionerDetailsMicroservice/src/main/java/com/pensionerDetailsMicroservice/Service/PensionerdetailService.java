@@ -22,6 +22,17 @@ public class PensionerdetailService {
 	csvToBean bean;
 
 	private Map<Long, PensionerDetail> pensionDetails;
+	
+	/**
+	 * returns PensionerDetailByAadhaarNumber
+	 * 
+	 * @param aadhaarNumber
+	 * @return
+	 * @throws IOException
+	 * @throws NotFoundException
+	 * @throws NumberFormatException
+	 * @throws ParseException
+	 */
 
 	public PensionerDetail getPensionerDetailByAadhaarNumber(long aadhaarNumber)
 			throws IOException, NotFoundException, NumberFormatException, ParseException {

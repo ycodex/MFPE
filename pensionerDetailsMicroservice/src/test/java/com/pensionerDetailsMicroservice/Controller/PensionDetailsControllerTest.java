@@ -29,6 +29,11 @@ public class PensionDetailsControllerTest {
 		MockitoAnnotations.initMocks(this);
 	}
 
+	/**
+	 * testing ToGetCorrectPenionerDetailsFromController
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testToGetCorrectPenionerDetailsFromController() throws Exception {
 		PensionerDetail pensionerDetail = new PensionerDetail("Shubham", DateUtil.parseDate("29-01-1999"), "PCASD1234Q",
@@ -36,10 +41,13 @@ public class PensionDetailsControllerTest {
 		when(service.getPensionerDetailByAadhaarNumber(123456789012L)).thenReturn(pensionerDetail);
 		PensionerDetail actual = controller.getPensionerDetailByAadhaar(123456789012L);
 		assertNotNull(actual);
-		assertEquals(actual, pensionerDetail);
+		assertEquals(pensionerDetail, actual);
 
 	}
-
+	
+	/**
+	 * testing ForAadharNumberNotInCsvFile
+	 */
 	@Test
 	public void testForAadharNumberNotInCsvFile() {
 

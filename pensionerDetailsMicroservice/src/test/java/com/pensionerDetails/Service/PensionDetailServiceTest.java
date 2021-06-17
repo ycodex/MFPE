@@ -22,7 +22,6 @@ import com.pensionerDetailsMicroservice.Model.PensionerDetail;
 import com.pensionerDetailsMicroservice.Service.PensionerdetailService;
 import com.pensionerDetailsMicroservice.Util.DateUtil;
 
-
 @SpringBootTest
 public class PensionDetailServiceTest {
 
@@ -42,6 +41,16 @@ public class PensionDetailServiceTest {
 		assertNotNull(pds);
 	}
 
+	/**
+	 * testing ForCorrectDetailsReturnedFromServiceWithCorrectAadharNumber
+	 * 
+	 * @throws IOException
+	 * @throws NotFoundException
+	 * @throws NumberFormatException
+	 * @throws com.pensionerDetailsMicroservice.Exception.NotFoundException
+	 * @throws ParseException
+	 */
+
 	@Test()
 	public void testCorrectDetailsReturnedFromServiceWithCorrectAadharNumber() throws IOException, NotFoundException,
 			NumberFormatException, com.pensionerDetailsMicroservice.Exception.NotFoundException, ParseException {
@@ -49,8 +58,17 @@ public class PensionDetailServiceTest {
 		PensionerDetail pensionerDetail = new PensionerDetail("Vaibhav", DateUtil.parseDate("26-11-1998"), "PCQAZ1285Q",
 				30000, 12000, "family", new Bank("SBI", 12345679, "public"));
 		when(pds.getPensionerDetailByAadhaarNumber(123456789013L)).thenReturn(pensionerDetail);
-		assertEquals(pensionerDetail,pds.getPensionerDetailByAadhaarNumber(123456789013L));
+		assertEquals(pensionerDetail, pds.getPensionerDetailByAadhaarNumber(123456789013L));
 	}
+
+	/**
+	 * testing ForIncorrectAadharNumber
+	 * 
+	 * @throws NumberFormatException
+	 * @throws IOException
+	 * @throws NotFoundException
+	 * @throws ParseException
+	 */
 
 	@Test()
 	public void testForIncorrectAadharNumber()

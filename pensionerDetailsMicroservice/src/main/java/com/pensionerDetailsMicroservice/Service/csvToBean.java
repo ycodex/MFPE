@@ -16,6 +16,15 @@ import com.pensionerDetailsMicroservice.Model.PensionerDetail;
 @Component
 @Slf4j
 public class csvToBean {
+	
+	/**
+	 * Reads the data from csv file and returns list of 
+	 * pensioner details
+	 * 
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws FileNotFoundException
+	 */
 
 	public List<PensionerDetail> getData() throws IllegalStateException, FileNotFoundException {
 

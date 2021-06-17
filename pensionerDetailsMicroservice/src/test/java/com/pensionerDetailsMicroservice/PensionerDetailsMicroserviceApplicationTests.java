@@ -18,11 +18,19 @@ class PensionerDetailsMicroserviceApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-	
-	
+
+	/**
+	 * testing mainMethod
+	 * 
+	 * @throws NumberFormatException
+	 * @throws IOException
+	 * @throws NotFoundException
+	 * @throws ParseException
+	 */
+
 	@Test
 	void testMainMethod() throws NumberFormatException, IOException, NotFoundException, ParseException {
-		PensionerDetailsMicroserviceApplication.main(new String [] {});
+		PensionerDetailsMicroserviceApplication.main(new String[] {});
 	}
 
 }

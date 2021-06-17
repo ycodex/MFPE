@@ -7,10 +7,8 @@ import com.opencsv.bean.CsvDate;
 import com.opencsv.bean.CsvNumber;
 import com.opencsv.bean.CsvRecurse;
 
-
 import lombok.Getter;
 import lombok.Setter;
-
 
 @Getter
 @Setter
@@ -18,29 +16,29 @@ public class PensionerDetail {
 	@CsvBindByName(column = "AadhaarNo")
 	@CsvNumber("")
 	private long aadharNo;
-	
+
 	@CsvBindByName(column = "Name")
 	private String name;
-	
+
 	@CsvBindByName(column = "DOB")
 	@CsvDate("dd-MM-yyyy")
 	private Date dateOfBirth;
-	
+
 	@CsvBindByName(column = "PAN")
 	private String pan;
-	
+
 	@CsvBindByName(column = "SALARY")
 	private double salary;
-	
+
 	@CsvBindByName(column = "ALLOWANCE")
 	private double allowance;
-	
+
 	@CsvBindByName(column = "PENSION_TYPE")
 	private String pensionType;
-	
+
 	@CsvRecurse
 	private Bank bank;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -66,5 +64,5 @@ public class PensionerDetail {
 		return "PensionerDetail [name=" + name + ", dateOfBirth=" + dateOfBirth + ", pan=" + pan + ", salary=" + salary
 				+ ", allowance=" + allowance + ", pensionType=" + pensionType + ", bank=" + bank + "]";
 	}
-	
+
 }
