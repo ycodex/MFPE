@@ -50,17 +50,6 @@
       background-position: cover;
     "
   >
-    <header>
-      <nav class="navbar bg-dark transparent">
-        <h3
-          class="text-center display-5 text-uppercase font-bold"
-          style="margin-top: 5px; font-family: sans-serif; color: #ffffff"
-        >
-          <i class="fab fa-google-wallet"> </i>&nbsp; Pension Management Portal
-        </h3>
-        <a href="/logout" style="align: right">Logout</a>
-      </nav>
-    </header>
     <section>
       <div class="container" style="margin-top: 200px">
         <h1 class="font-weight-bold" style="color: #ffffff" id="errorMessage">
