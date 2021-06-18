@@ -13,7 +13,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.pensionerDetailsMicroservice.Model.Bank;
 import com.pensionerDetailsMicroservice.Model.PensionerDetail;
-import com.pensionerDetailsMicroservice.Service.PensionerdetailService;
+import com.pensionerDetailsMicroservice.Service.PensionerDetailService;
 import com.pensionerDetailsMicroservice.Util.DateUtil;
 
 public class PensionDetailsControllerTest {
@@ -22,7 +22,7 @@ public class PensionDetailsControllerTest {
 	PensionerDetailsController controller;
 
 	@Mock
-	PensionerdetailService service;
+	PensionerDetailService service;
 
 	@Before
 	public void init() {

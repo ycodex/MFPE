@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pensionerDetailsMicroservice.Exception.NotFoundException;
 import com.pensionerDetailsMicroservice.Model.PensionerDetail;
-import com.pensionerDetailsMicroservice.Service.PensionerdetailService;
+import com.pensionerDetailsMicroservice.Service.PensionerDetailService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PensionerDetailsController {
 
 	@Autowired
-	private PensionerdetailService pds;
+	private PensionerDetailService pds;
 
 	/**
 	 * gets pensioner detail by aadhaar

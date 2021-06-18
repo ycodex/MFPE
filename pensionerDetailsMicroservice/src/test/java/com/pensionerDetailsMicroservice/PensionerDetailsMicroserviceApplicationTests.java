@@ -7,10 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.pensionerDetailsMicroservice.Exception.NotFoundException;
-import com.pensionerDetailsMicroservice.Model.Bank;
-import com.pensionerDetailsMicroservice.Model.PensionerDetail;
-
-import nl.jqno.equalsverifier.EqualsVerifier;
 
 @SpringBootTest
 class PensionerDetailsMicroserviceApplicationTests {

@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,14 +18,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.pensionerDetailsMicroservice.Exception.NotFoundException;
 import com.pensionerDetailsMicroservice.Model.Bank;
 import com.pensionerDetailsMicroservice.Model.PensionerDetail;
-import com.pensionerDetailsMicroservice.Service.PensionerdetailService;
+import com.pensionerDetailsMicroservice.Service.PensionerDetailService;
 import com.pensionerDetailsMicroservice.Util.DateUtil;
 
 @SpringBootTest
 public class PensionDetailServiceTest {
 
 	@Mock
-	private PensionerdetailService pds;
+	private PensionerDetailService pds;
 
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
