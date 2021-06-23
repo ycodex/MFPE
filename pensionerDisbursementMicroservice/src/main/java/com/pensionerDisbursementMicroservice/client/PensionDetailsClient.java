@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.pensionerDisbursementMicroservice.Exception.NotFoundException;
 import com.pensionerDisbursementMicroservice.Model.PensionerDetail;
 
-@FeignClient("PensionerDetailsService")//, url = "http://localhost:8082/"
+@FeignClient(name = "PensionerDetailsService",url="${details.path}")
 public interface PensionDetailsClient {
 	@PostMapping("/pensionerDetailByAadhaar/{aadhaarNumber}")
 	public PensionerDetail getPensionerDetailByAadhaar(@PathVariable long aadhaarNumber)

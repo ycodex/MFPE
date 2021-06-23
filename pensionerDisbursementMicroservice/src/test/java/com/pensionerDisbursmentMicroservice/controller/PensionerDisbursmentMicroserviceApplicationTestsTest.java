@@ -23,7 +23,7 @@ import com.pensionerDisbursementMicroservice.Model.ProcessPensionInput;
 import com.pensionerDisbursementMicroservice.Model.ProcessPensionResponse;
 import com.pensionerDisbursementMicroservice.client.PensionDetailsClient;
 import com.pensionerDisbursementMicroservice.controller.PensionDisbursementController;
-import com.pensionerDisbursementMicroservice.service.PensionDisbursmentService;
+import com.pensionerDisbursementMicroservice.service.PensionDisbursmentServiceImpl;
 
 
 @SpringBootTest
@@ -36,7 +36,7 @@ public class PensionerDisbursmentMicroserviceApplicationTestsTest {
 	ProcessPensionResponse response;
 
 	@Mock
-	PensionDisbursmentService service;
+	PensionDisbursmentServiceImpl service;
 
 	@Mock
 	PensionDetailsClient client;

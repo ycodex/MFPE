@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.pensionManagementSystem.model.User;
 
-@FeignClient("AuthorizationService")//, url = "http://localhost:8084/"
+@FeignClient(name="AuthorizationService", url="${auth.path}")//, url = "http://localhost:8084/"
 public interface AuthorizationMicroserviceClient {
 
 	@PostMapping("/authenticate")

@@ -10,7 +10,7 @@ import com.processPensionMicroservice.exception.NotFoundException;
 import com.processPensionMicroservice.model.ProcessPensionInput;
 import com.processPensionMicroservice.model.ProcessPensionResponse;
 
-@FeignClient(name = "PensionDisbursementService", url = "http://localhost:8083/")
+@FeignClient(name = "PensionDisbursementService", url = "${disburs.path}")
 public interface PensionDisbursementClient {
 	@PostMapping("/disbursePension")
 	public ProcessPensionResponse getcode(@RequestBody ProcessPensionInput processPensionInput)

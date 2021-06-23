@@ -3,6 +3,7 @@ package com.authorizationMicroservice;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
@@ -79,13 +80,13 @@ public class UserDetailsTest {
 
 	}
 
-	@Test(expected = UsernameNotFoundException.class)
+	@Test()
 	public void testForUsernameNotInDatabase() {
 //		exception.expect(UsernameNotFoundException.class);
 //		assertThrows(UsernameNotFoundException.class);
 		exception.expectMessage("User not found !!");
 		UserDetails userDetails = customUserDetailsService.loadUserByUsername("asdfgh@gmail.com");
-		assertNotNull(userDetails);
+		assertNull(userDetails);
 	}
 
 }

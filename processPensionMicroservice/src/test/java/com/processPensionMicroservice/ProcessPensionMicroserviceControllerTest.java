@@ -1,48 +1,54 @@
 package com.processPensionMicroservice;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.Test;
-import org.mockito.Matchers;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Date;
+
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import com.processPensionMicroservice.controller.processPensionController;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import com.processPensionMicroservice.model.PensionDetail;
+import com.processPensionMicroservice.model.PensionerInput;
+import com.processPensionMicroservice.model.ProcessPensionInput;
+import com.processPensionMicroservice.model.ProcessPensionResponse;
 @SpringBootTest
-class ProcessPensionMicroserviceControllerTest {
+public class ProcessPensionMicroserviceControllerTest {
 
-	MockMvc mockMvc;
-
-	@Autowired
+	
+	@Mock
 	processPensionController processpensionController;
-
-	@Autowired
-	WebApplicationContext context;
-
-	@Test
-	void contextLoads() {
-		assertNotNull(processpensionController);
+	
+	@org.junit.Before
+	public void init() {
+		MockitoAnnotations.initMocks(this);
 	}
 
-	@Before(value = "")
-	public void setUp() throws Exception {
-		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-	}
 
-	@Test
+	@org.junit.Test()
 	public void testPost() throws Exception {
-		String json = "{\n" + "  \"title\": \"Greetings\",\n" + "  \"value\": \"Hello World\"\n" + "}";
-//	        mockMvc.perform(post("/ProcessPension")
-//	                .contentType(MediaType.APPLICATION_JSON)
-//	                .content(json))
-//	                .andExpect(jsonPath("$.title", Matchers.is("Greetings")))
-//	                .andExpect(jsonPath("$.value", Matchers.is("Hello World")));
-	}
+		
+		PensionerInput p=new PensionerInput("Shubham",new Date("29/01/1999"),"PCASD1234Q",(long)123456789012.00,"self");
+	
+		PensionDetail r=new PensionDetail("Shubham",new Date("29/01/1999"),"PCASD1234Q","self",3150);
+		
+		when(processpensionController.getPensionDetails(p)).thenReturn(r);
+	
+		assertEquals(p.getName(),processpensionController.getPensionDetails(p).getName());
+	       
+	} 
+	@org.junit.Test
+	public void testGetCode() throws Exception {
+		
+		
+		ProcessPensionInput pi=new ProcessPensionInput((long)123456789012.00,31500.00,550);
+		when(processpensionController.getcode(pi)).thenReturn(new ProcessPensionResponse(10));
+		assertEquals(10,processpensionController.getcode(pi).getPensionStatusCode());
+	       
+	} 
+	
+	
 
 }

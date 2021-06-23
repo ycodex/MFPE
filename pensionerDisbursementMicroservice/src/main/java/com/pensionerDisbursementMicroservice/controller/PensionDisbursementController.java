@@ -11,7 +11,7 @@ import com.pensionerDisbursementMicroservice.Exception.NotFoundException;
 import com.pensionerDisbursementMicroservice.Model.ProcessPensionInput;
 import com.pensionerDisbursementMicroservice.Model.ProcessPensionResponse;
 import com.pensionerDisbursementMicroservice.client.PensionDetailsClient;
-import com.pensionerDisbursementMicroservice.service.PensionDisbursmentService;
+import com.pensionerDisbursementMicroservice.service.PensionDisbursmentServiceImpl;
 
 @RestController
 public class PensionDisbursementController {
@@ -20,7 +20,7 @@ public class PensionDisbursementController {
 	private PensionDetailsClient pdp;
 
 	@Autowired
-	private PensionDisbursmentService pds;
+	private PensionDisbursmentServiceImpl pds;
 
 	@PostMapping("/disbursePension")
 	public ProcessPensionResponse getcode(@RequestBody ProcessPensionInput processPensionInput)

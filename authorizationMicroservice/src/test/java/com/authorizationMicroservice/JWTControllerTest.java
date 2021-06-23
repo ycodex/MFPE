@@ -52,17 +52,7 @@ public class JWTControllerTest {
 
 		ResponseEntity<?> login = authController.generateToken(user);
 		assertEquals(200, login.getStatusCodeValue());
-//		com.authorizationMicroservice.model.User user = new com.authorizationMicroservice.model.User(1, "admin",
-//				"admin");
-//
-//		MvcResult result = mockMvc.perform(post("/authenticate").content(asJsonString(user))
-//				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-//				.andReturn();
-//		String responseString = result.getResponse().getContentAsString();
-//		ResponseEntity<?> response = objectMapper.readValue(responseString, ResponseEntity.class);
-//
-//		assertNotNull(responseString);
-//		assertTrue(true);
+
 	}
 
 	public static String asJsonString(final Object obj) {

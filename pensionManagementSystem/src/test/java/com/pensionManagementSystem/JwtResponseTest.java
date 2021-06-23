@@ -19,7 +19,20 @@ public class JwtResponseTest {
 	
 	@Autowired
 	AuthorizationMicroserviceClient authorizationMicroserviceClient;
-
+	@Test
+	public void testNotNullJwtResponse() throws Exception {
+		ResponseEntity<?> jwtResponse = authorizationMicroserviceClient.generateToken(new User(1,"admin","admin"));
+		HashMap<String, String> tokenBodyMap = (LinkedHashMap<String, String>) jwtResponse.getBody();
+		JWTResponse response = new JWTResponse(tokenBodyMap.get("token"));
+		assertNotNull(response);
+	}
+	
+	
+	@Test
+	public void testGetToken() {
+		JWTResponse jwtResponse = new JWTResponse("abc");
+		assertEquals(jwtResponse.getToken(), "abc");
+	}
 
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.pensionManagementSystem.model.PensionDetail;
 import com.pensionManagementSystem.model.PensionerInput;
 
-@FeignClient("ProcessPensionService")//url = "http://localhost:8081/"
+@FeignClient(name="ProcessPensionService", url="${process.path}")//url = "http://localhost:8081/"
 public interface ProcessPensionMicroserviceClient {
 
 	@PostMapping("/pensionerInput")

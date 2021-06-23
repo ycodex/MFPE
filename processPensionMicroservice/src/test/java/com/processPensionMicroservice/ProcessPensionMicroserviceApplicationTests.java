@@ -23,35 +23,6 @@ class ProcessPensionMicroserviceApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	void testBankDetails() {
-		EqualsVerifier.simple().forClass(Bank.class).verify();
-	}
-
-	@Test
-	void testPensionerDeatils() {
-		EqualsVerifier.simple().forClass(PensionerDetail.class).verify();
-	}
-	
-	@Test
-	void testPensionDetails() {
-		EqualsVerifier.simple().forClass(PensionDetail.class).verify();
-	}
-
-	@Test
-	void testPensionerInputDeatils() {
-		EqualsVerifier.simple().forClass(PensionerInput.class).verify();
-	}
-	
-	@Test
-	void testProcessPensionerInputDeatils() {
-		EqualsVerifier.simple().forClass(ProcessPensionInput.class).verify();
-	}
-	
-	@Test
-	void testProcessPensionResponseDeatils() {
-		EqualsVerifier.simple().forClass(ProcessPensionResponse.class).verify();
-	}
 
 	@Test
 	void testMainMethod() throws NumberFormatException, IOException, NotFoundException, ParseException {

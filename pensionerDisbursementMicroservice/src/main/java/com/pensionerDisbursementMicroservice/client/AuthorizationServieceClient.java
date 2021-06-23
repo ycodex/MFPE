@@ -1,10 +1,12 @@
 package com.pensionerDisbursementMicroservice.client;
 
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("authorization-service") //url = "http://localhost:9696/"
+@FeignClient(name = "authorization-service", url="${auth.path}") 
 public interface AuthorizationServieceClient {
 	
 	@PostMapping("/validate")

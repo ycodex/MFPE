@@ -3,6 +3,7 @@ package com.processPensionMicroservice.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,20 +16,24 @@ import com.processPensionMicroservice.model.PensionerDetail;
 import com.processPensionMicroservice.model.PensionerInput;
 import com.processPensionMicroservice.model.ProcessPensionInput;
 import com.processPensionMicroservice.model.ProcessPensionResponse;
-import com.processPensionMicroservice.service.ProcessPensionService;
+import com.processPensionMicroservice.service.ProcessPensionServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 public class processPensionController {
-
+	
+	@Value("${private.serviceCharge}")
+	private int privateBankCharge;
+	@Value("${public.serviceCharge}")
+	private int publicBankCharge;
 	@Autowired
 	PensionerDetailClient pensionerDetailClient;
 	@Autowired
 	PensionDisbursementClient pensionDisbursementClient;
 	@Autowired
-	ProcessPensionService processPensionService;
+	ProcessPensionServiceImpl processPensionService;
 
 	/**
 	 * The POST endpoint should calculate the PensionInput, invoke the Pensioner
@@ -45,10 +50,11 @@ public class processPensionController {
 		// Gets the details from the aadhar number from pension detail ms
 		PensionerDetail pensionerDetail = pensionerDetailClient
 				.getPensionerDetailByAadhaar(pensionerInput.getAadharNumber());
-
+		
+		log.info(pensionerDetail.toString());
 
 		PensionDetail pensionDetail = null;
-
+		
 		if (pensionerDetail == null) {
 			return pensionDetail;
 		}
@@ -63,7 +69,7 @@ public class processPensionController {
 			pensionDetail = processPensionService.getresult(pensionerDetail);
 
 			ProcessPensionInput processPensionInput = new ProcessPensionInput(pensionerInput.getAadharNumber(),
-					pensionDetail.getPensionAmount(), 500);
+					pensionDetail.getPensionAmount(), publicBankCharge);
 
 			log.info(processPensionInput.toString());
 
@@ -71,9 +77,9 @@ public class processPensionController {
 			try {
 				ppr = this.getcode(processPensionInput);
 				if (ppr.getPensionStatusCode() == 21) {
-					pensionDetail.setPensionAmount(pensionDetail.getPensionAmount() - 550);
+					pensionDetail.setPensionAmount(pensionDetail.getPensionAmount() - privateBankCharge);
 				} else if (ppr.getPensionStatusCode() == 10) {
-					pensionDetail.setPensionAmount(pensionDetail.getPensionAmount() - 500);
+					pensionDetail.setPensionAmount(pensionDetail.getPensionAmount() - publicBankCharge);
 				}
 			} catch (IOException | NotFoundException e) {
 				return null;

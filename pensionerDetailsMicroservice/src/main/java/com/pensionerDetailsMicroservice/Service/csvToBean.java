@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,10 +18,13 @@ import com.pensionerDetailsMicroservice.Model.PensionerDetail;
 @Slf4j
 public class csvToBean {
 
+	@Value("${fileName}")
+	private String fileName;
+	
 	public List<PensionerDetail> getData() throws IllegalStateException, FileNotFoundException {
-
+		log.info(fileName);
 		log.info("reading data from csv file");
-		Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/Pensionerdetails.csv"));
+		Reader reader = new InputStreamReader(this.getClass().getResourceAsStream(fileName));
 		List<PensionerDetail> details = new CsvToBeanBuilder(reader).withType(PensionerDetail.class).build().parse();
 		log.info("done reading data from csv file");
 		log.info("returning the List");

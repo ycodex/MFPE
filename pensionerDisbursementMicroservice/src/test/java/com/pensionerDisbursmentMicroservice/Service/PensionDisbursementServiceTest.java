@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.pensionerDisbursementMicroservice.Model.Bank;
 import com.pensionerDisbursementMicroservice.Model.ProcessPensionResponse;
-import com.pensionerDisbursementMicroservice.service.PensionDisbursmentService;
+import com.pensionerDisbursementMicroservice.service.PensionDisbursmentServiceImpl;
 import static org.mockito.Mockito.when;
 
 
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.any;
 public class PensionDisbursementServiceTest {
 
 	@Mock
-	PensionDisbursmentService service;
+	PensionDisbursmentServiceImpl service;
 	
 	@Mock
 	ProcessPensionResponse response;
