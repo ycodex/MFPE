@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Build-Jdk-Spec: 12
 Implementation-Title: pensionerDetailsMicroservice
 Implementation-Version: 0.0.1-SNAPSHOT
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Build-Jdk-Spec: 11
+Implementation-Title: pensionerDetailsMicroservice
+Implementation-Version: 0.0.1-SNAPSHOT
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> 36d564dbfe4a3946ee3935933a0ed6a2cb99255d

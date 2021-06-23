@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Build-Jdk-Spec: 12
+=======
+Build-Jdk-Spec: 11
+>>>>>>> 36d564dbfe4a3946ee3935933a0ed6a2cb99255d
 Implementation-Title: pensionerDisbursementMicroservice
 Implementation-Version: 0.0.1-SNAPSHOT
 Created-By: Maven Integration for Eclipse
